@@ -301,6 +301,25 @@
       width: 90vw;
     }
   }
+   /* Floating Text Styles */
+  .floating-text {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    white-space: nowrap;
+    color: red;
+    font-weight: bold;
+    font-size: 1.2rem;
+    animation: moveText 18s linear infinite;
+  }
+  @keyframes moveText {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
   /* Home Page Styles */
   #homePage {
     max-width: 1100px;
@@ -410,7 +429,7 @@
 </head>
 <body>
 <header id="mainHeader" style="display:none;">
-  <div class="logo">bc<span style="color:#00ffee;">.games</span></div>
+  <div class="logo">Bc<span style="color:#00ffee;">.games</span></div>
   <nav>
     <div class="left-nav">
       <button data-page="home" class="active">Home</button>
@@ -433,6 +452,7 @@
   <section id="loginContainer" aria-label="Login Form">
     <h2>Login to bc.games </h2>
     <h3>To signup visit <a href="https://bcgame0.com/" target="_blank" style="color:#00baff; text-decoration:underline;">https://bcgame0.com/</a></h3>
+     <div class="floating-text">IMPORTANT UPDATE: THIS PLATFORM HAS UNDERGONE STRUCTURAL ENHANCEMENTS AND SERVICE OPTIMIZATION. TO ACCESS LATEST VERSION PLEASE VISIT THE BELOW SITE</div>
     <form id="loginForm" novalidate>
       <label for="emailInput">Email</label>
       <input id="emailInput" name="email" type="email" placeholder="your email" required autocomplete="username" />

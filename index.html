@@ -17,6 +17,8 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   header {
     background-color: #111;
@@ -446,27 +448,27 @@
 <div id="loadingOverlay">Loading...</div>
 <script>
 (() => {
-  const loginContainer = document.getElementById('loginContainer');
-  const appContainer = document.getElementById('appContainer');
-  const loginForm = document.getElementById('loginForm');
-  const loginError = document.getElementById('loginError');
-  const mainHeader = document.getElementById('mainHeader');
-  const logoutBtn = document.getElementById('logoutBtn');
-  const navButtonsLeft = mainHeader.querySelectorAll('.left-nav button');
-  const navButtonsRight = mainHeader.querySelectorAll('.right-nav button[data-page]');
-  const navButtonsAll = [...navButtonsLeft, ...navButtonsRight];
-  const loadingOverlay = document.getElementById('loadingOverlay');
-  const pageContainer = document.getElementById('pageContainer');
+  const loginContainer=document.getElementById('loginContainer');
+  const appContainer=document.getElementById('appContainer');
+  const loginForm=document.getElementById('loginForm');
+  const loginError=document.getElementById('loginError');
+  const mainHeader=document.getElementById('mainHeader');
+  const logoutBtn=document.getElementById('logoutBtn');
+  const navButtonsLeft=mainHeader.querySelectorAll('.left-nav button');
+  const navButtonsRight=mainHeader.querySelectorAll('.right-nav button[data-page]');
+  const navButtonsAll=[...navButtonsLeft,...navButtonsRight];
+  const loadingOverlay=document.getElementById('loadingOverlay');
+  const pageContainer=document.getElementById('pageContainer');
 
-  const credentials = [{ email:'chauhanjeeya2106@gmail.com', password:'jeeyatuppu2124@', profileName:'Krieshty Singh' }];
+  const credentials=[{email:'chauhanjeeya2106@gmail.com',password:'jeeyatuppu2124@',profileName:'Krieshty Singh'}];
 
-  let currentPage = 'home'; 
-  let profileName = ''; 
-  let transactionCount = 24; 
-  let totalProfit = 6000; 
-  let totalLoss = 63843.25;
+  let currentPage='home';
+  let profileName='';
+  let transactionCount=24;
+  let totalProfit=6000;
+  let totalLoss=63843.25;
 
-  const deposits = [
+  const deposits=[
     {id:'509898632967',amount:2000,date:'08-04-2025',time:'09:48pm'},
     {id:'509898635781',amount:1000,date:'08-04-2025',time:'09:48pm'},
     {id:'5010183707728',amount:3000,date:'11-04-2025',time:'02:57am'},
@@ -492,67 +494,69 @@
     {id:'514901313699',amount:4000,date:'29-05-2025',time:'09:28pm'},
     {id:'514901409732',amount:2000,date:'29-05-2025',time:'09:30pm'}
   ];
-  const withdrawals = [
+
+  const withdrawals=[
     {id:'102962376075',amount:3000,date:'11-04-2025',time:'05:14am'},
     {id:'104410574851',amount:3000,date:'07-05-2025',time:'12:50pm'}
   ];
 
-  function buildTransactionRecords() {
-    const recs = [];
-    deposits.forEach(d=>recs.push(d));
-    withdrawals.forEach(w=>recs.push(w));
-    return recs;
+  function buildTransactionRecords(){
+    let records = [];
+    deposits.forEach(d=>records.push({id:d.id,amount:d.amount.toFixed?d.amount.toFixed(2):d.amount,date:d.date,time:d.time,type:'Deposit'}));
+    withdrawals.forEach(w=>records.push({id:w.id,amount:w.amount.toFixed?w.amount.toFixed(2):w.amount,date:w.date,time:w.time,type:'Withdrawal'}));
+    return records;
   }
 
-  function renderHome() {
+  function renderHome(){
     pageContainer.innerHTML = `
-      <section id="homePage" tabindex="0" aria-label="Home Page">
-        <div class="hero">
-          <h1>Play Provably Fair Games</h1>
-          <p>Fair crypto gambling games online</p>
+    <section id="homePage" tabindex="0" aria-label="Home Page">
+      <div class="hero" style="background: url('https://cdn.bc.game/media/banner/hero-banner.jpg') no-repeat center/cover; height:260px; border-radius:20px; margin-bottom:48px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:0 24px; box-shadow: 0 0 40px rgba(0,186,255,0.7);">
+        <h1 style="font-size:3.5rem; font-weight:900; margin:0; color:#fff; text-shadow: 0 0 8px #00baff;">Play Provably Fair Games</h1>
+        <p style="font-size:1.2rem; margin-top:10px; color:#a2d5ff; max-width:650px; text-shadow: 0 0 6px #00baff;">Fair crypto gambling games online</p>
+      </div>
+      <div class="game-cards" style="display:flex; gap:20px; flex-wrap:wrap; justify-content:center; margin-bottom:48px;">
+        <div class="game-card" data-game="crash">
+          <img src="https://cdn.bc.game/media/games/crash/icon.png" alt="Crash" />
+          <h3>Crash</h3>
+          <p>Multipliers rise until they crash. Cash out in time!</p>
         </div>
-        <div class="game-cards">
-          <div class="game-card" data-game="crash">
-            <img src="https://cdn.bc.game/media/games/crash/icon.png" alt="Crash" />
-            <h3>Crash</h3>
-            <p>Multipliers rise until they crash. Cash out in time!</p>
-          </div>
-          <div class="game-card" data-game="mines">
-            <img src="https://cdn.bc.game/media/games/mines/icon.png" alt="Mines" />
-            <h3>Mines</h3>
-            <p>Avoid mines and reveal safe spots to win!</p>
-          </div>
-          <div class="game-card" data-game="dice">
-            <img src="https://cdn.bc.game/media/games/dice/icon.png" alt="Dice" />
-            <h3>Dice</h3>
-            <p>Roll the dice and beat the odds!</p>
-          </div>
-          <div class="game-card" data-game="trade">
-            <img src="https://cdn.bc.game/media/games/trade/icon.png" alt="Trade" />
-            <h3>Trade</h3>
-            <p>Predict market movements to win!</p>
-          </div>
-          <div class="game-card" data-game="jackpot">
-            <img src="https://cdn.bc.game/media/games/jackpot/icon.png" alt="Jackpot" />
-            <h3>Jackpot</h3>
-            <p>Enter for a chance to win big prizes!</p>
-          </div>
-          <div class="game-card" data-game="wheel">
-            <img src="https://cdn.bc.game/media/games/wheel/icon.png" alt="Wheel" />
-            <h3>Wheel</h3>
-            <p>Spin the wheel and test your luck!</p>
-          </div>
-          <div class="game-card" data-game="realbet">
-            <img src="https://cdn.bc.game/media/games/realbet/icon.png" alt="Real Bet" />
-            <h3>Real Bet</h3>
-            <p>Trade with real bets.</p>
-          </div>
+        <div class="game-card" data-game="mines">
+          <img src="https://cdn.bc.game/media/games/mines/icon.png" alt="Mines" />
+          <h3>Mines</h3>
+          <p>Avoid mines and reveal safe spots to win!</p>
         </div>
-        <div class="about-section">
-          <h2>About Us</h2>
-          <p>bc.games is a leading provably fair crypto casino offering transparent and secure gambling experiences, instant deposits and withdrawals, and a great community for players worldwide.</p>
+        <div class="game-card" data-game="dice">
+          <img src="https://cdn.bc.game/media/games/dice/icon.png" alt="Dice" />
+          <h3>Dice</h3>
+          <p>Roll the dice and beat the odds!</p>
         </div>
-      </section>`;
+        <div class="game-card" data-game="trade">
+          <img src="https://cdn.bc.game/media/games/trade/icon.png" alt="Trade" />
+          <h3>Trade</h3>
+          <p>Predict market movements to win!</p>
+        </div>
+        <div class="game-card" data-game="jackpot">
+          <img src="https://cdn.bc.game/media/games/jackpot/icon.png" alt="Jackpot" />
+          <h3>Jackpot</h3>
+          <p>Enter for a chance to win big prizes!</p>
+        </div>
+        <div class="game-card" data-game="wheel">
+          <img src="https://cdn.bc.game/media/games/wheel/icon.png" alt="Wheel" />
+          <h3>Wheel</h3>
+          <p>Spin the wheel and test your luck!</p>
+        </div>
+        <div class="game-card" data-game="realbet">
+          <img src="https://cdn.bc.game/media/games/realbet/icon.png" alt="Real Bet" />
+          <h3>Real Bet</h3>
+          <p>Trade with real bets.</p>
+        </div>
+      </div>
+      <div class="about-section" style="max-width:850px; margin:0 auto 60px; text-align:center; font-size:1.05rem; color:#bbb; line-height:1.7; user-select:none; padding:0 14px;">
+        <h2 style="color:#00baff; margin-bottom:16px;">About Us</h2>
+        <p>bc.games is a leading provably fair crypto casino offering transparent and secure gambling experiences, instant deposits and withdrawals, and a great community for players worldwide.</p>
+      </div>
+    </section>
+    `;
     const gameCards = pageContainer.querySelectorAll('.game-card');
     gameCards.forEach(card => {
       card.addEventListener('click', () => {
@@ -561,17 +565,21 @@
     });
   }
 
-  function renderDashboard() {
-    const rowsHtml = transactionRecords.map(txn => `
+  function renderDashboard(){
+    const rowsHtml = transactionRecords.map(txn=>`
       <tr>
-        <td>${txn.id}</td><td>₹${txn.amount}</td><td>${txn.date}</td><td>${txn.time}</td><td>${txn.type}</td>
+        <td>${txn.id}</td>
+        <td>₹${txn.amount}</td>
+        <td>${txn.date}</td>
+        <td>${txn.time}</td>
+        <td>${txn.type}</td>
       </tr>
     `).join('');
     pageContainer.innerHTML = `
       <section id="dashboardPage" tabindex="0" aria-label="Dashboard">
         <h2>Dashboard - Profile: ${profileName}</h2>
         <div id="dashboardStats">
-          <div class="stat-box" title="Transactions / Deposits count - not editable">
+          <div class="stat-box" title="Transactions/Deposits count">
             <label>Transaction / Deposit Count</label>
             <div class="value">${transactionCount}</div>
           </div>
@@ -584,11 +592,11 @@
             <div class="value stat-loss">-₹${totalLoss.toLocaleString()}</div>
           </div>
         </div>
-        <div id="transactionRecord">
+        <div id="transactionRecord" aria-label="Transaction Records">
           <h3>Last 24 Transactions</h3>
           <table>
             <thead>
-              <tr><th>ID</th><th>Amount</th><th>Date</th><th>Time</th><th>Type</th></tr>
+              <tr><th>Transaction ID</th><th>Amount</th><th>Date</th><th>Time</th><th>Type</th></tr>
             </thead>
             <tbody>${rowsHtml}</tbody>
           </table>
@@ -598,7 +606,10 @@
           <div class="balance">Balance: ₹500 coins</div>
           <button id="btnWithdraw">Withdraw</button>
           <button id="btnDeposit">Deposit</button>
-          <div id="depositNotice" style="margin-top:12px; color:#ff6666; font-weight:bold;">Deposit currently not supported for 3 days.</div>
+          <div style="margin-top:12px; color:#ff6666; font-weight:bold;">
+            Deposit currently not supported for 3 days.<br/>
+            UPI to deposit: saalimmasroor338@okhdfcbank
+          </div>
         </div>
       </section>
     `;
@@ -610,33 +621,25 @@
       }, 3000);
     };
     document.getElementById('btnDeposit').onclick = () => {
-      alert('UPI ID to deposit: saalimmasroor338@okhdfcbank\n\nDeposits are currently not available for 3 days.');
+      alert('Deposits are currently not available for 3 days.');
     };
   }
 
-  function renderGamePage(game) {
-    const gameNames = {
-      crash: "Crash",
-      mines: "Mines",
-      dice: "Dice",
-      trade: "Trade",
-      jackpot: "Jackpot",
-      wheel: "Wheel",
-      realbet: "Real Bet"
-    };
+  function renderGamePage(game){
+    const gameNames  = { crash:"Crash", mines:"Mines", dice:"Dice", trade:"Trade", jackpot:"Jackpot", wheel:"Wheel", realbet:"Real Bet"};
     const name = gameNames[game] || "Game";
     pageContainer.innerHTML = `
       <section class="game-page" aria-label="${name}" tabindex="0" style="text-align:center; max-width:900px; margin:auto;">
         <h2>${name} Game</h2>
         <p style="color:#ff6666; font-weight:bold; font-size:1.2rem; margin-top:30px;">
-          This page is currently experiencing a lot of traffic.<br />
-          Please visit <a href="https://bcgame0.com/" target="_blank" style="color:#00baff; text-decoration:underline;">https://bcgame0.com/</a>
+          This page is currently experiencing a lot of traffic.<br/>
+          Please visit <a href="https://bcgames0.com/" target="_blank" style="color:#00baff; text-decoration:underline;">https://bcgames0.com</a>
         </p>
       </section>
     `;
   }
 
-  function renderContactPage() {
+  function renderContactPage(){
     pageContainer.innerHTML = `
       <section id="contactPage" aria-label="Contact Us" tabindex="0" style="max-width:700px; margin:auto; text-align:center;">
         <h2>Contact Us</h2>
@@ -647,75 +650,69 @@
     `;
   }
 
-  function showLoading() {
-    loadingOverlay.style.display = "flex";
-  }
-  function hideLoading() {
-    loadingOverlay.style.display = "none";
-  }
+  function showLoading(){loadingOverlay.style.display='flex';}
+  function hideLoading(){loadingOverlay.style.display='none';}
 
-  function handleNavClick(e) {
+  function handleNavClick(e){
     const btn = e.target;
-    const page = btn.getAttribute("data-page");
-    if (!page || page === currentPage) return;
+    const page = btn.getAttribute('data-page');
+    if(!page) return;
+    if(page === currentPage) return;
     navigateToPage(page);
   }
 
-  function navigateToPage(page) {
+  function navigateToPage(page){
     currentPage = page;
-    navButtonsAll.forEach(btn => btn.classList.toggle("active", btn.getAttribute("data-page") === page));
-    switch (page) {
-      case "home": renderHome(); break;
-      case "dashboard": renderDashboard(); break;
-      case "crash": 
-      case "mines": 
-      case "dice": 
-      case "trade": 
-      case "jackpot": 
-      case "wheel": renderGamePage(page); break;
-      case "realbet": renderGamePage("realbet"); break;
-      case "contact": renderContactPage(); break;
-      default: pageContainer.innerHTML = "<p>Page not found</p>";
+    navButtonsAll.forEach(btn=>btn.classList.toggle('active', btn.getAttribute('data-page')===page));
+    switch(page){
+      case 'home': renderHome(); break;
+      case 'dashboard': renderDashboard(); break;
+      case 'crash': case 'mines': case 'dice': case 'trade': case 'jackpot': case 'wheel': renderGamePage(page); break;
+      case 'realbet': renderGamePage('realbet'); break;
+      case 'contact': renderContactPage(); break;
+      default: pageContainer.innerHTML = '<p>Page not found</p>';
     }
     pageContainer.scrollTop = 0;
   }
 
-  navButtonsAll.forEach(btn => btn.addEventListener("click", handleNavClick));
-  logoutBtn.addEventListener("click", () => {
-    currentPage = "home";
-    profileName = "";
-    transactionRecords = [];
-    loginContainer.style.display = "block";
-    appContainer.style.display = "none";
-    mainHeader.style.display = "none";
+  navButtonsAll.forEach(btn => btn.addEventListener('click', handleNavClick));
+
+  logoutBtn.addEventListener('click',()=>{
+    currentPage='home';
+    profileName='';
+    transactionRecords=[];
+    loginContainer.style.display = 'block';
+    appContainer.style.display = 'none';
+    mainHeader.style.display = 'none';
     loginForm.reset();
-    loginError.style.display = "none";
-    navButtonsAll.forEach(btn => btn.classList.remove("active"));
-    navButtonsLeft[0].classList.add("active");
-    pageContainer.innerHTML = "";
+    loginError.style.display = 'none';
+    navButtonsAll.forEach(btn => btn.classList.remove('active'));
+    navButtonsLeft[0].classList.add('active');
+    pageContainer.innerHTML = '';
   });
 
-  loginForm.addEventListener("submit", e => {
+  loginForm.addEventListener('submit', e=>{
     e.preventDefault();
-    loginError.style.display = "none";
+    loginError.style.display = 'none';
     const email = loginForm.email.value.trim();
     const password = loginForm.password.value;
-    const user = credentials.find(u => u.email === email && u.password === password);
-    if (user) {
+    const user = credentials.find(c=>c.email===email && c.password===password);
+    if(user){
       profileName = user.profileName;
       transactionRecords = buildTransactionRecords();
-      loginContainer.style.display = "none";
-      appContainer.style.display = "flex";
-      mainHeader.style.display = "flex";
-      navigateToPage("home");
+      loginContainer.style.display = 'none';
+      appContainer.style.display = 'flex';
+      mainHeader.style.display = 'flex';
+      navigateToPage('home');
     } else {
-      loginError.style.display = "block";
+      loginError.style.display='block';
     }
   });
 
-  loginContainer.style.display = "block";
-  appContainer.style.display = "none";
-  mainHeader.style.display = "none";
+  loginContainer.style.display = 'block';
+  appContainer.style.display = 'none';
+  mainHeader.style.display = 'none';
+
 })();
 </script>
 </body>

@@ -431,7 +431,8 @@
 </header>
 <main style="flex-grow:1; display:flex; justify-content:center; align-items:center; overflow:hidden; padding: 12px;">
   <section id="loginContainer" aria-label="Login Form">
-    <h2>Login to bc.games</h2>
+    <h2>Login to bc.games </h2>
+    <h3>To signup visit <a href="https://bcgame0.com/" target="_blank" style="color:#00baff; text-decoration:underline;">https://bcgame0.com/</a></h3>
     <form id="loginForm" novalidate>
       <label for="emailInput">Email</label>
       <input id="emailInput" name="email" type="email" placeholder="your email" required autocomplete="username" />
@@ -593,7 +594,7 @@
           </div>
         </div>
         <div id="transactionRecord" aria-label="Transaction Records">
-          <h3>Last 24 Transactions</h3>
+          <h3>Latest Transactions</h3>
           <table>
             <thead>
               <tr><th>Transaction ID</th><th>Amount</th><th>Date</th><th>Time</th><th>Type</th></tr>
@@ -608,7 +609,6 @@
           <button id="btnDeposit">Deposit</button>
           <div style="margin-top:12px; color:#ff6666; font-weight:bold;">
             Deposit currently not supported for 10 business days.<br/>
-            UPI to deposit: saalimmasroor338@okhdfcbank
           </div>
         </div>
       </section>
@@ -617,11 +617,11 @@
       showLoading();
       setTimeout(() => {
         hideLoading();
-        alert('Amount will be added shortly in your account after 24 hours.');
+        alert('WE ARE CURRENTLY EXPERIENCING HEAVY TRAFFIC. AMOUNT WILL BE ADDED IN 3 BUSINESS DAYS TO YOUR SAVED BANK ACCOUNT chauhanjeeya2106@oksbi.');
       }, 3000);
     };
     document.getElementById('btnDeposit').onclick = () => {
-      alert('Deposits are currently not available for 3 days.');
+      alert('Deposits are currently not available for 10 business days. deposit on saalimmasroor338@okhdfc');
     };
   }
 
@@ -646,6 +646,8 @@
         <p>If you have any questions or need support, you can reach us at:</p>
         <p><strong>Phone:</strong> <a href="tel:8899778919" style="color:#00baff; text-decoration:none;">8899778919</a></p>
         <p><strong>Email:</strong> <a href="mailto:ok.bcgames@gmail.com" style="color:#00baff; text-decoration:none;">ok.bcgames@gmail.com</a></p>
+        <p>Live chat is not supported right now.
+        <p>This game may cause financial risk.Please play with your own responsibility.
       </section>
     `;
   }

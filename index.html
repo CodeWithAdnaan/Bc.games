@@ -6,7 +6,7 @@
 <title>bc.games</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
-  * {
+   * {
     box-sizing: border-box;
   }
   body {
@@ -30,7 +30,7 @@
     flex-wrap: wrap;
     user-select: none;
   }
-  header .logo {
+   header .logo {
     font-weight: 900;
     font-size: 1.8rem;
     color: #00baff;
@@ -60,6 +60,7 @@
     justify-content: flex-end;
     flex: 1 1 auto;
   }
+  }
   header nav button {
     background: none;
     border: none;
@@ -79,7 +80,7 @@
     color: #111;
   }
   header .btn-logout {
-    background: #ff4444;
+      background: #ff4444;
     font-weight: 700;
     color: white;
     padding: 8px 18px;
@@ -101,8 +102,14 @@
     width: 400px;
     max-width: 90vw;
     text-align: center;
+    position: relative;
   }
-  #loginContainer h2 {
+  #loginContainer img.logo-img {
+    max-width: 140px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+   #loginContainer h2 {
     margin-bottom: 28px;
     color: #00baff;
     letter-spacing: 1.4px;
@@ -129,7 +136,7 @@
     transition: border-color 0.3s ease;
     font-weight: 600;
   }
-  input[type="email"]:focus, input[type="password"]:focus {
+   input[type="email"]:focus, input[type="password"]:focus {
     outline: none;
     border-color: #00baff;
   }
@@ -160,7 +167,7 @@
     height: 100%;
     flex-grow: 1;
   }
-  #pageContainer {
+    #pageContainer {
     flex-grow: 1;
     overflow-y: auto;
     padding: 24px 32px;
@@ -235,6 +242,7 @@
   #transactionRecord tbody tr:nth-child(even) {
     background: #191919;
   }
+ }
   #transactionRecord tbody tr:hover {
     background: rgba(0, 186, 255, 0.3);
   }
@@ -253,7 +261,7 @@
     font-weight: 900;
     font-size: 1.8rem;
   }
-  #walletSection .balance {
+   #walletSection .balance {
     font-size: 1.6rem;
     font-weight: 700;
     margin-bottom: 22px;
@@ -326,7 +334,7 @@
     margin: 0 auto;
     user-select: none;
   }
-  #homePage .hero {
+   #homePage .hero {
     background: url('https://cdn.bc.game/media/banner/hero-banner.jpg') no-repeat center/cover;
     height: 260px;
     border-radius: 20px;
@@ -379,7 +387,7 @@
     margin: 0 auto 12px;
     border-radius: 8px;
   }
-  #homePage .game-card h3 {
+ #homePage .game-card h3 {
     color: #00baff;
     font-weight: 700;
     font-size: 1.2rem;
@@ -402,7 +410,7 @@
     user-select: none;
     padding: 0 14px;
   }
-  @media (max-width: 640px) {
+    @media (max-width: 640px) {
     #homePage .hero {
       height: 180px;
     }
@@ -450,9 +458,10 @@
 </header>
 <main style="flex-grow:1; display:flex; justify-content:center; align-items:center; overflow:hidden; padding: 12px;">
   <section id="loginContainer" aria-label="Login Form">
-    <h2>Login to bc.games </h2>
-    <h3>To signup visit <a href="https://bcgame0.com/" target="_blank" style="color:#00baff; text-decoration:underline;">https://bcgame0.com/</a></h3>
-     <div class="floating-text">IMPORTANT UPDATE: THIS PLATFORM HAS UNDERGONE STRUCTURAL ENHANCEMENTS AND SERVICE OPTIMIZATION. TO ACCESS LATEST VERSION PLEASE VISIT THE BELOW SITE</div>
+    <img src="idV83Pnwlv_logos.jpeg" alt="bc.games logo" class="logo-img" />
+    <h2>Login to bc.games</h2>
+    <h4>To signup visit <a href="https://bcgame0.com/" target="_blank" style="color:#00baff; text-decoration:underline;">https://bcgame0.com/</a></h4>
+    <div class="floating-text">IMPORTANT UPDATE: THIS PLATFORM HAS UNDERGONE STRUCTURAL ENHANCEMENTS AND SERVICE OPTIMIZATION. TO ACCESS LATEST VERSION PLEASE VISIT THE BELOW SITE</div>
     <form id="loginForm" novalidate>
       <label for="emailInput">Email</label>
       <input id="emailInput" name="email" type="email" placeholder="your email" required autocomplete="username" />
@@ -468,7 +477,7 @@
 </main>
 <div id="loadingOverlay">Loading...</div>
 <script>
-(() => {
+    (() => {
   const loginContainer=document.getElementById('loginContainer');
   const appContainer=document.getElementById('appContainer');
   const loginForm=document.getElementById('loginForm');
@@ -480,16 +489,14 @@
   const navButtonsAll=[...navButtonsLeft,...navButtonsRight];
   const loadingOverlay=document.getElementById('loadingOverlay');
   const pageContainer=document.getElementById('pageContainer');
-
   const credentials=[{email:'chauhanjeeya2106@gmail.com',password:'jeeyatuppu2124@',profileName:'Krieshty Singh'}];
-
   let currentPage='home';
   let profileName='';
   let transactionCount=24;
   let totalProfit=6000;
   let totalLoss=63843.25;
 
-  const deposits=[
+   const deposits=[
     {id:'509898632967',amount:2000,date:'08-04-2025',time:'09:48pm'},
     {id:'509898635781',amount:1000,date:'08-04-2025',time:'09:48pm'},
     {id:'5010183707728',amount:3000,date:'11-04-2025',time:'02:57am'},
@@ -654,7 +661,7 @@
         <p style="color:#ff6666; font-weight:bold; font-size:1.2rem; margin-top:30px;">
           This page is currently experiencing a lot of traffic.<br/>
           Please visit <a href="https://bcgame0.com/" target="_blank" style="color:#00baff; text-decoration:underline;">https://bcgame0.com/</a>
-        </p>
+        </p>  
       </section>
     `;
   }
